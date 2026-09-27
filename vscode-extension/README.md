@@ -1,6 +1,9 @@
-
-
 # ⚡ Promptini
+
+[![Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/BecherZribi.promptini?color=amber&label=Marketplace)](https://marketplace.visualstudio.com/items?itemName=BecherZribi.promptini)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/BecherZribi.promptini?color=emerald)](https://marketplace.visualstudio.com/items?itemName=BecherZribi.promptini)
+[![Rating](https://img.shields.io/visual-studio-marketplace/r/BecherZribi.promptini)](https://marketplace.visualstudio.com/items?itemName=BecherZribi.promptini)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Bechir02/promptini/blob/main/LICENSE)
 
 **Turn a rough idea in Tunisian Derja, Arabic, French, or English into a clean, model-ready prompt, without leaving VS Code.**
 

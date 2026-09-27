@@ -49,7 +49,7 @@ def forge(req: ForgeRequest):
         return {"transformed": "", "error": "empty prompt", "task_type": ""}
 
     task_type = detect_task_type(prompt)
-    lang = "english"  # output is ALWAYS English regardless of UI selection
+    lang = req.language or "english"
 
     def _gen(_i):
         try:

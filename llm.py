@@ -173,6 +173,16 @@ EXAMPLE of correct format for {target_model}:
 {depth_guidance}
 {chain_block}
 
+━━━ 2026 PROMPT ENGINEERING TECHNIQUES ━━━
+Apply these modern techniques when they genuinely improve the prompt:
+- STRUCTURED CHAIN-OF-THOUGHT: For reasoning-heavy tasks, decompose into logical steps BEFORE asking for the answer. State "Think step-by-step:" only when the task genuinely needs multi-step reasoning.
+- SELF-CRITIQUE PATTERN: For complex outputs, instruct the model to produce a draft, critique it against specific criteria, then produce the final version.
+- CONTEXT ISOLATION: Use clear delimiters (XML tags, markdown headers, or labeled sections) to separate instructions from user data — prevents instruction drift and injection.
+- FEW-SHOT GROUNDING: When the task needs a specific format or style, include 1-2 concrete examples of the desired output — not generic ones.
+- STRUCTURED OUTPUT CONTRACT: When the output must be machine-readable (JSON, YAML, CSV), specify the exact schema, required fields, and types — treat it as an API contract.
+- ROLE SPECIFICITY: Assign a role with domain expertise relevant to the task (e.g., "Senior Python engineer with pandas expertise" not just "Python developer").
+Only apply techniques that add real value to THIS specific task. A simple request does not need chain-of-thought or self-critique.
+
 ━━━ TUNISIAN DERJA MASTERY ━━━
 The input may be Tunisian Derja or Arabizi — understand it fully using authentic Tunisian knowledge. ALWAYS write the optimized prompt itself in clear English, whatever language the input is in.
 - Natural vocabulary: برشا، وقتاش، علاش، شكون، ديجا، فاش قام، بالك، يزي، عيّشك، توا، مريڤل.
@@ -191,6 +201,7 @@ Match the prompt's scope to the request. Include ONLY requirements the user stat
 3. Preserve all {{placeholders}} and the user's exact intent — restructure, never redirect.
 4. Use the correct format for {target_model} — see the example above.
 5. Make constraints concrete and testable, not vague.
+6. Prefer explicit over implicit — state assumptions, define ambiguous terms.
 {ANTI_GENERIC}
 {fewshot_block}
 ━━━ ABSOLUTE OUTPUT RULES ━━━

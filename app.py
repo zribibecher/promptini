@@ -130,7 +130,8 @@ def forge(raw_prompt, model, depth, language, request: gr.Request | None = None)
         yield "", '<span class="pf-eval"><span class="dot"></span>Error</span>', f'<span class="pf-tok">{err[:60]}</span>'
         return
     best = cands[pick_best(raw_prompt, cands, model) if len(cands) > 1 else 0]
-    yield best, READY_PILL, f'<span class="pf-tok">~{max(1, len(best)//4)} tokens</span>'
+    task_badge = task_type.replace("_", " ").title()
+    yield best, READY_PILL, f'<span class="pf-tok">{task_badge} · ~{max(1, len(best)//4)} tokens</span>'
 
 with gr.Blocks(title="Promptini") as demo:
     gr.HTML("""
@@ -150,7 +151,9 @@ with gr.Blocks(title="Promptini") as demo:
                     gr.HTML('<div class="pf-flabel">Model</div>')
                     model_dropdown = gr.Dropdown(
                         [("Claude Code", "claude-code"), ("Claude", "claude"), ("ChatGPT", "gpt-4"),
-                         ("Gemini", "gemini"), ("Cursor", "cursor"), ("Any", "general")],
+                         ("Gemini", "gemini"), ("Cursor", "cursor"), ("Cline", "cline"),
+                         ("Aider", "aider"), ("Copilot", "copilot"), ("DeepSeek", "deepseek"),
+                         ("Windsurf", "windsurf"), ("Any", "general")],
                         value="claude-code", show_label=False, container=False, elem_id="pf-model")
                 with gr.Column(min_width=0):
                     gr.HTML('<div class="pf-flabel">Depth</div>')

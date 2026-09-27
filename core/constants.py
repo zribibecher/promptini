@@ -13,6 +13,8 @@ MODELS: list[str] = [
     "claude",
     "gpt-4",
     "cursor",
+    "cline",
+    "aider",
     "gemini",
     "llama",
     "mistral",
@@ -44,6 +46,7 @@ DEFAULT_LANGUAGE: str = "english"
 TASK_TYPES: list[str] = [
     "extraction",
     "system_prompt",
+    "agentic",
     "code_review",
     "debugging",
     "refactoring",

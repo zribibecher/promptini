@@ -70,17 +70,33 @@ def detect_task_type(raw_prompt: str) -> str:
 
     if has([
         # en
-        "system prompt", "persona", "act as", "you are a", "build an agent",
-        "make an agent", "create an agent", "design an agent",
+        "system prompt", "persona", "act as", "you are a",
         # fr
-        "tu es un", "comporte-toi", "agent qui", "assistant qui", "prompt systeme",
+        "tu es un", "comporte-toi", "assistant qui", "prompt systeme",
         # ar
-        "برومبت", "شخصية", "تصرف ك", "انت مساعد", "اعمل ايجنت", "اصنع ايجنت", "صمم ايجنت",
+        "برومبت", "شخصية", "تصرف ك", "انت مساعد",
         # derja/arabizi
-        "na3mel agent", "a3mel agent", "3mel agent", "3malli agent", "agent bech",
-        "agent mte3", "chatbot", "bot bech",
+        "chatbot", "bot bech",
+    ]) and not has([
+        "agent", "agentic", "workflow", "tool use", "loop", "autonomous",
+        "ايجنت", "وركفلو",
     ]):
         return "system_prompt"
+
+    if has([
+        # en
+        "build an agent", "make an agent", "create an agent", "design an agent",
+        "agentic", "agent workflow", "tool use", "autonomous", "reasoning loop",
+        "react pattern", "agent that", "multi-step agent",
+        # fr
+        "agent qui", "agent autonome", "flux agent",
+        # ar
+        "اعمل ايجنت", "اصنع ايجنت", "صمم ايجنت", "وركفلو",
+        # derja/arabizi
+        "na3mel agent", "a3mel agent", "3mel agent", "3malli agent", "agent bech",
+        "agent mte3",
+    ]):
+        return "agentic"
 
     if has([
         # en

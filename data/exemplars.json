@@ -2959,5 +2959,53 @@
     "output": "You are a social‑media copywriter. Create an Instagram post advertising a Tunisian cooking class for families. Use a friendly, warm tone, keep the copy to about 100 Arabic words, and finish with the call‑to‑action \"احجز مقعدك\". Provide:\n- Caption text (100 words)\nIf any requirement is unclear, mention it.",
     "quality_score": 8.8,
     "source": "groq-generated"
+  },
+  {
+    "task_type": "agentic",
+    "lang": "derja",
+    "target_model": "cline",
+    "input": "n7eb na3mel agent ychouf les PRs fel repo w ychouf les tests ken t3addew w yekteb résumé",
+    "output": "Goal: Build an automated PR reviewer agent that inspects open PRs, verifies test runs, and leaves a markdown summary comment.\n\nFiles: src/agent/pr_reviewer.ts, src/github/client.ts, src/types/pr.ts\n\nRequirements:\n- Fetch open PRs using GitHub Octokit API\n- Check CI status check runs via GitHub Actions API\n- Extract changed files and diff summary\n- Post a concise markdown comment: status, changed files count, test outcome\n- Max steps per PR: 5 to prevent infinite execution\n\nVerify: Run on a mock PR payload and assert the generated comment matches the expected structure.",
+    "quality_score": 9.5
+  },
+  {
+    "task_type": "agentic",
+    "lang": "arabizi",
+    "target_model": "cline",
+    "input": "a3melli agent yaml workflow yexecuti scripts python kol lila w ken fama erreur yab3ath email",
+    "output": "Goal: Implement an autonomous cron agent workflow that executes nightly Python pipeline scripts and dispatches failure alerts.\n\nFiles: .github/workflows/nightly.yml, scripts/pipeline.py, scripts/notify.py\n\nRequirements:\n- Run nightly at 00:00 UTC via cron trigger\n- Execute pipeline steps sequentially; abort on first failure\n- On failure (steps.status == failure), trigger notify.py with error log snippet\n- Do not expose email credentials in plain text; use GitHub Secrets\n\nVerify: Manually trigger workflow dispatch with a simulated script error and confirm email alert delivery.",
+    "quality_score": 9.4
+  },
+  {
+    "task_type": "agentic",
+    "lang": "english",
+    "target_model": "general",
+    "input": "build an agentic tool-use loop that reads documentation files, answers queries, and self-verifies with quotes",
+    "output": "**Role:** AI Systems Architect specializing in agentic workflows.\n\n**Goal:** Implement a ReAct (Reason + Act) tool-use agent loop that retrieves relevant documentation chunks, answers developer queries, and verifies answers against source quotes.\n\n**Architecture & Loop:**\n1. Observe: Parse user query and identify missing information.\n2. Act: Call doc_search(query) tool with semantic query.\n3. Think: Synthesize answer candidate.\n4. Reflect: Verify every factual claim against the returned chunks. If ungrounded, re-query or state unknown.\n\n**Constraints:**\n- Max iterations: 4 steps\n- Strict schema for tool calls\n- Never fabricate APIs or flags not present in doc chunks\n\n**Output Format:** Runnable Python class  with  returning .",
+    "quality_score": 9.6
+  },
+  {
+    "task_type": "code_generation",
+    "lang": "derja",
+    "target_model": "aider",
+    "input": "zid fonction fel auth.py bech n-verifiw biha el token jwt w traja3 payload",
+    "output": "In src/auth.py, add verify_jwt_token(token: str, secret: str) -> dict that decodes and validates a JWT token using PyJWT.\n\nRequirements:\n- Verify expiration (exp) and signature (HS256)\n- Raise InvalidTokenError on invalid or expired token\n- Return the decoded payload dict on success\n- Do not modify existing login and signup functions in src/auth.py\n\nVerify: Run pytest tests/test_auth.py.",
+    "quality_score": 9.3
+  },
+  {
+    "task_type": "refactoring",
+    "lang": "arabizi",
+    "target_model": "deepseek",
+    "input": "naddaf el fonction hedhi mte3 calcul des prix, fiha barcha if else w duplications",
+    "output": "Role: Senior Software Engineer specializing in clean code and refactoring.\n\nTask: Refactor the price calculation logic to eliminate nested conditionals and code duplication.\n\nInstructions:\n1. Analyze the existing branching logic and identify all pricing discount rules.\n2. Replace nested if-else ladders with a Strategy Pattern or lookup dispatch table.\n3. Preserve all existing calculation outcomes and boundary conditions.\n4. Show intermediate reasoning: list extracted strategies before presenting the final code.\n\nOutput Format:\n- Summary of extracted patterns\n- Refactored Python function with type hints\n- Before/After test case verification demonstrating identical outputs.",
+    "quality_score": 9.4
+  },
+  {
+    "task_type": "debugging",
+    "lang": "derja",
+    "target_model": "windsurf",
+    "input": "3andi crash KeyError: user_id fel handler mte3 webhook Stripe fel api/webhook.ts",
+    "output": "In api/webhook.ts, resolve the KeyError: user_id crash during Stripe webhook handling.\n\nRequirements:\n- Safely retrieve metadata.user_id using optional chaining (event.data.object.metadata?.user_id)\n- If user_id is missing or undefined, log a structured warning and return HTTP 400 instead of crashing\n- Do not alter signature verification logic\n\nVerify: Simulate a Stripe event without user_id and confirm 400 response with zero unhandled exceptions.",
+    "quality_score": 9.3
   }
 ]

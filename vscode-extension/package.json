@@ -1,10 +1,20 @@
 {
   "name": "prompt-forge-vscode",
-  "displayName": "Promptini",
-  "description": "Turn rough ideas in Tunisian Derja, Arabic, French, or English into clean, model-ready prompts for Claude, ChatGPT, Gemini, and Cursor.",
+  "displayName": "Promptini AI Prompt Studio",
+  "description": "Turn rough ideas in Tunisian Derja, Arabic, French, or English into clean, model-ready prompts for Claude, Gemini, ChatGPT, Copilot, and Cursor — right inside VS Code.",
   "version": "1.0.0",
+  "pricing": "Free",
   "icon": "icon.png",
   "publisher": "BecherZribi",
+  "galleryBanner": {
+    "color": "#FAF9F6",
+    "theme": "light"
+  },
+  "homepage": "https://github.com/Bechir02/promptini#readme",
+  "bugs": {
+    "url": "https://github.com/Bechir02/promptini/issues"
+  },
+  "qna": "marketplace",
   "repository": {
     "type": "git",
     "url": "https://github.com/Bechir02/promptini.git"
@@ -12,8 +22,24 @@
   "engines": {
     "vscode": "^1.88.0"
   },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": {
+      "supported": true
+    }
+  },
   "categories": [
-    "Other"
+    "Machine Learning",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "prompt",
+    "ai",
+    "claude",
+    "gemini",
+    "copilot"
   ],
   "activationEvents": [
     "onView:promptiniView"

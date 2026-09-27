@@ -44,7 +44,7 @@ Implement a GET /users endpoint that returns paginated user records.
 ...
 ```
 
-The **output is always English** (best for the target models), the Derja is only used to *understand* what you want.
+The **output is always English** (best for the target models) — the Derja is only used to *understand* what you want.
 
 ## Key features
 
@@ -134,11 +134,6 @@ core/             classifier, templates, exemplars, config, rate-limit, cache
 vscode-extension/ VS Code extension
 ```
 
-## Roadmap
 
-- **Phase 1** — Agentic RAG: LanceDB hybrid retrieval over the curated corpus, embedded via a light API (no local torch). See `docs/ROADMAP.md`.
-- Extension telemetry → self-upgrading templates.
 
-## License
 
-MIT. Derja corpus used under CC-BY-SA-4.0 (attribution: Hamza Bouajila).

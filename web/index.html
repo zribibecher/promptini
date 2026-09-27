@@ -94,7 +94,10 @@
         <label><span class="flabel">Model</span>
           <select id="model">
             <option value="claude-code">Claude</option><option value="gpt-4">ChatGPT</option>
-            <option value="gemini">Gemini</option><option value="cursor">Cursor</option><option value="general">Any</option>
+            <option value="gemini">Gemini</option><option value="cursor">Cursor</option>
+            <option value="copilot">Copilot</option><option value="cline">Cline</option>
+            <option value="aider">Aider</option><option value="deepseek">DeepSeek</option>
+            <option value="windsurf">Windsurf</option><option value="general">Any</option>
           </select>
         </label>
         <label><span class="flabel">Depth</span>
@@ -177,7 +180,8 @@ async function forge(){
     if(data.error || !data.transformed){ outputPre.classList.remove("empty");
       outputPre.textContent="⚠️ "+(data.error||"generation failed"); setStatus("idle","Error"); tok.textContent="—"; return; }
     outputPre.classList.remove("empty"); outputPre.textContent=data.transformed;
-    setStatus("ready","✓ Ready"); tok.textContent="~"+Math.max(1,Math.round(data.transformed.length/4))+" tokens";
+    const taskBadge = data.task_type ? data.task_type.replace(/_/g, " ").toUpperCase() + " · " : "";
+    setStatus("ready","✓ Ready"); tok.textContent=taskBadge+"~"+Math.max(1,Math.round(data.transformed.length/4))+" tokens";
   }catch(e){ stopSteps(); skeleton.style.display="none"; outputPre.style.display="block";
     outputPre.classList.remove("empty"); outputPre.textContent="⚠️ "+e.message; setStatus("idle","Error"); }
   finally{ forgeBtn.disabled=false; forgeBtn.textContent="⚡ Promptini"; }

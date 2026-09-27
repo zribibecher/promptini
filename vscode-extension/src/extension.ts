@@ -121,7 +121,10 @@ function getWebviewHtml(url: string, mode: string): string {
   <textarea id="idea" dir="auto" placeholder="Rough idea…"></textarea>
   <select id="model">
     <option value="claude-code">Claude</option><option value="gpt-4">ChatGPT</option>
-    <option value="gemini">Gemini</option><option value="cursor">Cursor</option><option value="general">Any</option>
+    <option value="gemini">Gemini</option><option value="cursor">Cursor</option>
+    <option value="copilot">Copilot</option><option value="cline">Cline</option>
+    <option value="deepseek">DeepSeek</option><option value="windsurf">Windsurf</option>
+    <option value="general">Any</option>
   </select>
   <button class="btn forge" id="forge">&#9889; Promptini</button>
   <div class="lbl"><span class="k">Output</span><span class="pill" id="st"><span class="dot"></span>Idle</span></div>

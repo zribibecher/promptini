@@ -14,15 +14,19 @@ VAGUE_WORDS = [
 
 # ── Required sections per model ───────────────────────────────────────────────
 REQUIRED_SECTIONS = {
-    "claude-code": ["<role>", "<task>", "<constraints>", "<output_format>"],
-    "claude":      ["<role>", "<task>", "<constraints>"],
-    "gpt-4":       ["## role", "## task", "## output"],
+    "claude-code": ["# role", "# task"],
+    "claude":      ["# role", "# task"],
+    "gpt-4":       ["## role", "## task"],
     "cursor":      [],
     "gemini":      ["task:", "output:"],
     "llama":       ["role:", "task:", "output:"],
     "mistral":     ["## role", "## task"],
     "copilot":     ["language:", "file"],
-    "general":     ["role", "task", "output"],
+    "cline":       ["goal:", "requirements:"],
+    "aider":       ["requirements:"],
+    "deepseek":    ["role:", "task:"],
+    "windsurf":    ["requirements:"],
+    "general":     ["role", "task"],
 }
 
 # ── Task requirements ─────────────────────────────────────────────────────────
@@ -43,19 +47,39 @@ TASK_REQUIREMENTS = {
 # ── Model awareness checks ────────────────────────────────────────────────────
 MODEL_CHECKS = {
     "claude-code": {
-        "good": ["<role>", "<task>", "<constraints>", "<output_format>"],
-        "bad":  ["## role", "## task", "## output"],
-        "note": "Should use XML tags — <role>, <task>, <constraints>, <output_format>.",
+        "good": ["# role", "# task", "<role>", "<task>"],
+        "bad":  [],
+        "note": "Should use clear section headers (# ROLE, # TASK).",
     },
     "claude": {
-        "good": ["<role>", "<task>", "<constraints>"],
-        "bad":  ["## role", "## task"],
-        "note": "Should use XML tags like claude-code.",
+        "good": ["# role", "# task", "<role>", "<task>"],
+        "bad":  [],
+        "note": "Should use clear section headers (# ROLE, # TASK).",
     },
     "gpt-4": {
         "good": ["##", "## role", "## task"],
-        "bad":  ["<role>", "<task>", "<constraints>"],
+        "bad":  [],
         "note": "Should use markdown headers (##), not XML tags.",
+    },
+    "cline": {
+        "good": ["goal:", "files:", "requirements:", "verify:"],
+        "bad":  [],
+        "note": "Should be agentic with goal, requirements, and verification.",
+    },
+    "aider": {
+        "good": ["requirements:", "verify:", "in "],
+        "bad":  [],
+        "note": "Should name files and explicit requirements.",
+    },
+    "deepseek": {
+        "good": ["role:", "task:", "output:"],
+        "bad":  [],
+        "note": "Should be structured with reasoning steps.",
+    },
+    "windsurf": {
+        "good": ["verify:", "in "],
+        "bad":  [],
+        "note": "Should be concise and file-aware.",
     },
     "cursor": {
         "good": ["you are working inside cursor", "verify", "inside cursor"],

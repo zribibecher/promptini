@@ -246,6 +246,31 @@ Handle FileNotFoundError. Do not touch other functions.
 
 Verify: run it on a test CSV with known duplicates.""",
     },
+
+    "cline": {
+        "format":      "minimal",
+        "description": "Agentic and action-first for the Cline IDE agent. State the goal, the files/functions involved, constraints, and a verification step. One task at a time. Cline will plan and execute autonomously.",
+        "example": """Goal: Add input validation to the /api/users POST endpoint.
+
+Files: src/routes/users.ts, src/validators/user.ts
+
+Requirements:
+- Validate email format and name length (2-50 chars)
+- Return 400 with specific field errors on invalid input
+- Do not change existing response shape for valid requests
+
+Verify: run the existing test suite and confirm all pass, then add a test for invalid email.""",
+    },
+
+    "aider": {
+        "format":      "minimal",
+        "description": "For the Aider AI pair-programming tool. Direct and file-aware. Name the files to edit, describe the change clearly, and state what should NOT change. Aider works best with focused, single-concern requests.",
+        "example": """In src/utils/csv.py, add a function find_duplicates(csv_path: str) -> pd.DataFrame that loads the CSV, finds duplicate rows, and returns them with occurrence counts.
+
+Handle FileNotFoundError. Do not modify existing functions in the file.
+
+The function signature must match: find_duplicates(csv_path: str) -> pd.DataFrame""",
+    },
 }
 
 # ── Task-specific guidance ────────────────────────────────────────────────────
@@ -256,6 +281,7 @@ TASK_GUIDANCE: dict[str, str] = {
 - Include error handling requirements
 - Mention performance constraints if relevant
 - Add at least one concrete usage example
+- For complex tasks, ask the model to think step-by-step before coding
 """,
     "debugging": """
 - ALWAYS include these four elements — no exceptions:
@@ -266,6 +292,7 @@ TASK_GUIDANCE: dict[str, str] = {
 - Keep scope narrow — fix this specific bug only
 - End with a concrete verification step
 - Use the words: error, root cause, fix, prevent
+- Ask the model to explain WHY the bug occurs before jumping to the fix
 """,
     "code_review": """
 - Define review criteria explicitly (security, performance, style, correctness)
@@ -299,9 +326,10 @@ TASK_GUIDANCE: dict[str, str] = {
     "extraction": """
 - List every field to extract with its expected type
 - Specify null handling explicitly
-- Prohibit hallucination
-- Define output format (JSON schema preferred)
+- Prohibit hallucination — extract only what is present in the source
+- Define output format (JSON schema preferred) — treat it as an API contract
 - Handle edge cases: nested fields, arrays, ambiguous values
+- If multiple records, specify how to delimit them
 """,
     "summarization": """
 - Specify target length EXACTLY (e.g., "between 100 and 150 words" or "3-5 bullet points")
@@ -317,6 +345,16 @@ TASK_GUIDANCE: dict[str, str] = {
 - Define the scope boundary — what topics are in/out
 - Specify tone with concrete adjectives
 - Add an out-of-scope redirect behavior
+- Use delimiters (<context>, <instructions>) to isolate sections and prevent injection
+- Include 1-2 few-shot examples of ideal responses
+""",
+    "agentic": """
+- Define the agent's goal as a single, measurable outcome
+- List available tools/actions and when to use each
+- Specify the reasoning loop: Observe → Think → Act → Reflect
+- Set explicit guardrails: max steps, fallback behavior, when to stop
+- Require the agent to verify its own output before finalizing
+- Define what "done" looks like — concrete success criteria, not vague goals
 """,
     "writing": """
 - Specify genre, tone, and target audience with descriptive adjectives (e.g., "Professional yet witty", "Technical but accessible")
@@ -329,8 +367,9 @@ TASK_GUIDANCE: dict[str, str] = {
     "general": """
 - Make the task as specific as possible
 - Add at least one concrete constraint
-- Define the output format explicitly
-- Specify what success looks like
+- Define the output format explicitly (JSON schema, markdown, plain text)
+- Specify what success looks like with measurable criteria
+- Separate instructions from input data using clear delimiters
 """,
     "translation": """
 - State the source and target languages explicitly
@@ -383,6 +422,9 @@ WHAT TO AVOID — these make prompts weak:
 - Obvious instructions: "make sure it works", "test your code", "be accurate"
 - Copying exemplar text verbatim
 - Adding sections that add no value for this specific task
+- Hedging language: "try to", "consider", "you might want to" — be direct
+- Filler sections that only restate the task in different words
+- Unsupported claims: "ensure high performance" without defining what "high" means
 """
 
 
