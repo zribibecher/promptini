@@ -107,9 +107,10 @@ def detect_task_type(raw_prompt: str) -> str:
         # ar
         "راجع", "مراجعة", "دقق", "افحص", "قيم", "تحقق من",
         # derja/arabizi
-        "raja3", "raje3", "raja3li", "raj3li", "9ayem",
+        "raja3li", "raj3li", "raje3li", "raja3 el code", "raje3 el code", "9ayem",
     ]) and not has([
         "fix", "debug", "corrige", "صلح", "صحح", "salla7", "sale7", "asle7",
+        "yraja3", "traja3", "endpoint", "n7eb",
     ]):
         return "code_review"
 
@@ -156,7 +157,8 @@ def detect_task_type(raw_prompt: str) -> str:
 
     if has([
         # en
-        "clean the data", "clean up the data", "data cleaning", "deduplicate",
+        "clean the data", "clean up the data", "clean this dataset", "clean dataset",
+        "data cleaning", "dataset cleaning", "deduplicate",
         "drop duplicates", "remove duplicates", "duplicates", "missing values", "impute",
         "normalize the data",
         # fr
@@ -167,6 +169,8 @@ def detect_task_type(raw_prompt: str) -> str:
         # derja/arabizi
         "naddaf el data", "naddaf data", "na77i el data", "na77i el duplicates",
         "naddaf el donnees",
+    ]) and not has([
+        "refactor", "refactorise", "refactoriser", "function", "fonction", "method", "methode",
     ]):
         return "data_cleaning"
 
@@ -227,7 +231,7 @@ def detect_task_type(raw_prompt: str) -> str:
 
     if has([
         # en
-        "sql", "sql query", "select from", "select * from", "joins", "jointure",
+        "sql", "sql query", "query", "database query", "select from", "select * from", "joins", "jointure",
         # fr
         "requete sql", "requete",
         # ar
@@ -266,7 +270,7 @@ def detect_task_type(raw_prompt: str) -> str:
     if has([
         # en
         "write", "create", "build", "implement", "generate", "code", "function",
-        "class", "script", "program", "develop",
+        "class", "script", "program", "develop", "endpoint", "route", "backend",
         # fr
         "cree", "creer", "genere", "generer", "fonction", "classe", "programme",
         "implemente", "implementer", "developpe", "developper",
@@ -274,7 +278,7 @@ def detect_task_type(raw_prompt: str) -> str:
         "اكتب كود", "اعمل فنكشن", "برمج", "انشئ", "ولد", "سكريبت", "دالة", "كلاس",
         # derja/arabizi
         "3malli", "3melli", "a3melli", "aktebli code", "ekteb code", "kteb fonction",
-        "na3mel fonction", "code python",
+        "na3mel fonction", "code python", "endpoint", "api flask", "n7eb endpoint",
     ]):
         return "code_generation"
 
