@@ -2,7 +2,7 @@
   "name": "prompt-forge-vscode",
   "displayName": "Promptini AI Prompt Studio",
   "description": "Turn rough ideas in Tunisian Derja, Arabic, French, or English into clean, model-ready prompts for Claude, Gemini, ChatGPT, Copilot, and Cursor — right inside VS Code.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "pricing": "Free",
   "icon": "icon.png",
   "publisher": "BecherZribi",
