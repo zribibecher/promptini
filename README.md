@@ -1,14 +1,12 @@
-<!--
 ---
 title: Promptini
 emoji: ⚡
 colorFrom: yellow
-colorTo: gray
+colorTo: yellow
 sdk: docker
 app_port: 7860
 pinned: false
 ---
--->
 
 <div align="center">
 
